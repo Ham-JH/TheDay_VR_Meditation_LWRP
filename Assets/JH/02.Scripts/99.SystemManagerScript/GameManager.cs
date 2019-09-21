@@ -220,260 +220,261 @@ public class GameManager : MonoBehaviour
                 }
                 break;
 
-            //case ScenePosition.Main:
-            //    switch(sceneStatus)
-            //    {
-            //        case SceneStatus.Main_0_SceneChange:
-            //            sceneStatus = SceneStatus.Main_1_MainMenuLayout;
-            //            Debug.Log("Main_1 Main Scene z : Contents x : Manual" +
-            //                "\nc : Options v : Credit b : Exit");
-            //            break;
+            case ScenePosition.Main:
+                switch (sceneStatus)
+                {
+                    case SceneStatus.Main_0_SceneChange:
+                        sceneStatus = SceneStatus.Main_1_MainMenuLayout;
+                        Debug.Log("Main_1 Main Scene");
+                        Debug.Log("RTrig : Contents LTrig : Manual" +
+                            "\nLMenu : Options RMenu : Credit LGrip : Exit");
+                        break;
 
-            //        case SceneStatus.Main_1_MainMenuLayout:
-            //            switch (value)
-            //            {
-            //                case "z":
-            //                    sceneStatus = SceneStatus.Main_2_Contents;
-            //                    Debug.Log("Main_2 Contents select");
-                                
-            //                    break;
+                    case SceneStatus.Main_1_MainMenuLayout:
+                        switch (inputStatus)
+                        {
+                            case InputStatus.RTrigDown:
+                                sceneStatus = SceneStatus.Main_2_Contents;
+                                Debug.Log("Main_2 Contents select");
 
-            //                case "x":
-            //                    sceneStatus = SceneStatus.Main_3_Manual;
-            //                    Debug.Log("Main_3 Manual select");
-                                
-            //                    break;
+                                break;
 
-            //                case "c":
-            //                    sceneStatus = SceneStatus.Main_4_Options;
-            //                    Debug.Log("Main_4 Options select");
-                                
-            //                    break;
+                            case InputStatus.LTrigDown:
+                                sceneStatus = SceneStatus.Main_3_Manual;
+                                Debug.Log("Main_3 Manual select");
 
-            //                case "v":
-            //                    sceneStatus = SceneStatus.Main_5_Credit;
-            //                    Debug.Log("Main_5 Credit select");
-                                
-            //                    break;
+                                break;
 
-            //                case "b":
-            //                    sceneStatus = SceneStatus.Main_6_ProgramExit;
-            //                    Debug.Log("Main_6 Program exit select");
-            //                    break;
-            //            }
-            //            break;
+                            case InputStatus.LMenuDown:
+                                sceneStatus = SceneStatus.Main_4_Options;
+                                Debug.Log("Main_4 Options select");
 
-            //        case SceneStatus.Main_2_Contents:
-            //            Debug.Log("Contents Scene load");
-            //            SceneManager.LoadScene("JH_03Contents");
-            //            break;
+                                break;
 
-            //        case SceneStatus.Main_3_Manual:
-            //            Debug.Log("Manual Scene load");
-            //            SceneManager.LoadScene("JH_04Manual");
-            //            break;
+                            case InputStatus.RMenuDown:
+                                sceneStatus = SceneStatus.Main_5_Credit;
+                                Debug.Log("Main_5 Credit select");
 
-            //        case SceneStatus.Main_4_Options:
-            //            Debug.Log("Options Scene load");
-            //            SceneManager.LoadScene("JH_05options");
-            //            break;
+                                break;
 
-            //        case SceneStatus.Main_5_Credit:
-            //            Debug.Log("Credit Scene load");
-            //            SceneManager.LoadScene("JH_06Credit");
-            //            break;
+                            case InputStatus.LGripDown:
+                                sceneStatus = SceneStatus.Main_6_ProgramExit;
+                                Debug.Log("Main_6 Program exit select");
+                                break;
+                        }
+                        break;
 
-            //        case SceneStatus.Main_6_ProgramExit:
-            //            Debug.Log("Program exit.");
-            //            break;
-            //    }
-            //    break;
+                    case SceneStatus.Main_2_Contents:
+                        Debug.Log("Contents Scene load");
+                        SceneManager.LoadScene("JH_03Contents");
+                        break;
 
-            //case ScenePosition.Contents:
-            //    switch(sceneStatus)
-            //    {
-            //        case SceneStatus.Contents_0_SceneChange:
-            //            Debug.Log("Contents_0 Contents Mode");
-            //            break;
+                    case SceneStatus.Main_3_Manual:
+                        Debug.Log("Manual Scene load");
+                        SceneManager.LoadScene("JH_04Manual");
+                        break;
 
-            //    }
-            //    break;
+                    case SceneStatus.Main_4_Options:
+                        Debug.Log("Options Scene load");
+                        SceneManager.LoadScene("JH_05options");
+                        break;
 
-            //case ScenePosition.Manual:
-            //    switch (sceneStatus)
-            //    {
-            //        case SceneStatus.Manual_0_SceneChange:
-            //            Debug.Log("Manual_0 Manual Mode");
-            //            sceneStatus = SceneStatus.Manual_1_ManualPlay;
-            //            break;
+                    case SceneStatus.Main_5_Credit:
+                        Debug.Log("Credit Scene load");
+                        SceneManager.LoadScene("JH_06Credit");
+                        break;
 
-            //        case SceneStatus.Manual_1_ManualPlay:
-            //            Debug.Log("Manual_1 Credit playing" +
-            //                "\nz : stop x : timeout c : keep play");
-            //            sceneStatus = SceneStatus.Manual_2_StopCheck;
-            //            break;
+                    case SceneStatus.Main_6_ProgramExit:
+                        Debug.Log("Program exit.");
+                        break;
+                }
+                break;
 
-            //        case SceneStatus.Manual_2_StopCheck:
-            //            switch(value)
-            //            {
-            //                case "z":
-            //                    Debug.Log("Manual_2 stop playing");
-            //                    sceneStatus = SceneStatus.Manual_3_CreditEnd;
-            //                    break;
+            case ScenePosition.Contents:
+                switch (sceneStatus)
+                {
+                    case SceneStatus.Contents_0_SceneChange:
+                        Debug.Log("Contents_0 Contents Mode");
+                        break;
 
-            //                case "x":
-            //                    Debug.Log("Manual_2 manual timeout");
-            //                    sceneStatus = SceneStatus.Manual_3_CreditEnd;
-            //                    break;
+                }
+                break;
 
-            //                case "c":
-            //                    Debug.Log("Credit_2 keep playing");
-            //                    sceneStatus = SceneStatus.Manual_1_ManualPlay;
-            //                    break;
-            //            }
-            //            break;
+            case ScenePosition.Manual:
+                switch (sceneStatus)
+                {
+                    case SceneStatus.Manual_0_SceneChange:
+                        Debug.Log("Manual_0 Manual Mode");
+                        sceneStatus = SceneStatus.Manual_1_ManualPlay;
+                        break;
 
-            //        case SceneStatus.Manual_3_CreditEnd:
-            //            Debug.Log("credit playmode end");
-            //            sceneStatus = SceneStatus.Manual_4_ReturnMain;
-            //            break;
+                    case SceneStatus.Manual_1_ManualPlay:
+                        Debug.Log("Manual_1 Credit playing" +
+                            "\nRTrig : stop RMenu : timeout RGrip : keep play");
+                        sceneStatus = SceneStatus.Manual_2_StopCheck;
+                        break;
 
-            //        case SceneStatus.Manual_4_ReturnMain:
-            //            Debug.Log("return main");
-            //            SceneManager.LoadScene("JH_02MainScene");
-            //            break;
+                    case SceneStatus.Manual_2_StopCheck:
+                        switch (inputStatus)
+                        {
+                            case InputStatus.RTrigDown:
+                                Debug.Log("Manual_2 stop playing");
+                                sceneStatus = SceneStatus.Manual_3_CreditEnd;
+                                break;
 
-            //    }
-            //    break;
+                            case InputStatus.RMenuDown:
+                                Debug.Log("Manual_2 manual timeout");
+                                sceneStatus = SceneStatus.Manual_3_CreditEnd;
+                                break;
 
-            //case ScenePosition.Options:
-            //    switch (sceneStatus)
-            //    {
-            //        case SceneStatus.Options_0_SceneChange:
-            //            Debug.Log("Options_0 Options Scene. select data to select options or quit" +
-            //                "\nz : op01 x : op02 c : op03 v : op04 b : op05 n : returnMain");
-            //            sceneStatus = SceneStatus.Options_1_OptionsMenu;
-            //            break;
+                            case InputStatus.RGripDown:
+                                Debug.Log("Credit_2 keep playing");
+                                sceneStatus = SceneStatus.Manual_1_ManualPlay;
+                                break;
+                        }
+                        break;
 
-            //        case SceneStatus.Options_1_OptionsMenu:
-            //            switch(value)
-            //            {
-            //                case "z":
-            //                    Debug.Log("01 select.");
-            //                    sceneStatus = SceneStatus.Options_s_Options01;
-            //                    break;
+                    case SceneStatus.Manual_3_CreditEnd:
+                        Debug.Log("credit playmode end");
+                        sceneStatus = SceneStatus.Manual_4_ReturnMain;
+                        break;
 
-            //                case "x":
-            //                    Debug.Log("02 select.");
-            //                    sceneStatus = SceneStatus.Options_s_Options02;
-            //                    break;
+                    case SceneStatus.Manual_4_ReturnMain:
+                        Debug.Log("return main");
+                        SceneManager.LoadScene("JH_02MainScene");
+                        break;
 
-            //                case "c":
-            //                    Debug.Log("03 select.");
-            //                    sceneStatus = SceneStatus.Options_s_Options03;
-            //                    break;
+                }
+                break;
 
-            //                case "v":
-            //                    Debug.Log("04 select.");
-            //                    sceneStatus = SceneStatus.Options_s_Options04;
-            //                    break;
+            case ScenePosition.Options:
+                switch (sceneStatus)
+                {
+                    case SceneStatus.Options_0_SceneChange:
+                        Debug.Log("Options_0 Options Scene. select data to select options or quit" +
+                            "\nRTrig : op01 LTrig : op02 RMenu : op03 LMenu : op04 RGrip : op05 LGrip : returnMain");
+                        sceneStatus = SceneStatus.Options_1_OptionsMenu;
+                        break;
 
-            //                case "b":
-            //                    Debug.Log("05 select.");
-            //                    sceneStatus = SceneStatus.Options_s_Options05;
-            //                    break;
+                    case SceneStatus.Options_1_OptionsMenu:
+                        switch (inputStatus)
+                        {
+                            case InputStatus.RTrigDown:
+                                Debug.Log("01 select.");
+                                sceneStatus = SceneStatus.Options_s_Options01;
+                                break;
 
-            //                case "n":
-            //                    Debug.Log("return main select.");
-            //                    sceneStatus = SceneStatus.Options_3_ReturnMain;
-            //                    break;
-            //            }
-            //            break;
+                            case InputStatus.LTrigDown:
+                                Debug.Log("02 select.");
+                                sceneStatus = SceneStatus.Options_s_Options02;
+                                break;
 
-            //        case SceneStatus.Options_s_Options01:
-            //            Debug.Log("option check 01, return options select");
-            //            sceneStatus = SceneStatus.Options_0_SceneChange;
-            //            break;
+                            case InputStatus.RMenuDown:
+                                Debug.Log("03 select.");
+                                sceneStatus = SceneStatus.Options_s_Options03;
+                                break;
 
-            //        case SceneStatus.Options_s_Options02:
-            //            Debug.Log("option check 02, return options select");
-            //            sceneStatus = SceneStatus.Options_0_SceneChange;
-            //            break;
+                            case InputStatus.LMenuDown:
+                                Debug.Log("04 select.");
+                                sceneStatus = SceneStatus.Options_s_Options04;
+                                break;
 
-            //        case SceneStatus.Options_s_Options03:
-            //            Debug.Log("option check 03, return options select");
-            //            sceneStatus = SceneStatus.Options_0_SceneChange;
-            //            break;
+                            case InputStatus.RGripDown:
+                                Debug.Log("05 select.");
+                                sceneStatus = SceneStatus.Options_s_Options05;
+                                break;
 
-            //        case SceneStatus.Options_s_Options04:
-            //            Debug.Log("option check 04, return options select");
-            //            sceneStatus = SceneStatus.Options_0_SceneChange;
-            //            break;
+                            case InputStatus.LGripDown:
+                                Debug.Log("return main select.");
+                                sceneStatus = SceneStatus.Options_3_ReturnMain;
+                                break;
+                        }
+                        break;
 
-            //        case SceneStatus.Options_s_Options05:
-            //            Debug.Log("option check 05, return options select");
-            //            sceneStatus = SceneStatus.Options_0_SceneChange;
-            //            break;
+                    case SceneStatus.Options_s_Options01:
+                        Debug.Log("option check 01, return options select");
+                        sceneStatus = SceneStatus.Options_0_SceneChange;
+                        break;
 
-            //        case SceneStatus.Options_2_SelectOptionsQuit:
-            //            Debug.Log("return main scene");
-            //            sceneStatus = SceneStatus.Options_3_ReturnMain;
-            //            break;
+                    case SceneStatus.Options_s_Options02:
+                        Debug.Log("option check 02, return options select");
+                        sceneStatus = SceneStatus.Options_0_SceneChange;
+                        break;
 
-            //        case SceneStatus.Options_3_ReturnMain:
-            //            Debug.Log("return main");
-            //            SceneManager.LoadScene("JH_02MainScene");
-            //            break;
+                    case SceneStatus.Options_s_Options03:
+                        Debug.Log("option check 03, return options select");
+                        sceneStatus = SceneStatus.Options_0_SceneChange;
+                        break;
+
+                    case SceneStatus.Options_s_Options04:
+                        Debug.Log("option check 04, return options select");
+                        sceneStatus = SceneStatus.Options_0_SceneChange;
+                        break;
+
+                    case SceneStatus.Options_s_Options05:
+                        Debug.Log("option check 05, return options select");
+                        sceneStatus = SceneStatus.Options_0_SceneChange;
+                        break;
+
+                    case SceneStatus.Options_2_SelectOptionsQuit:
+                        Debug.Log("return main scene");
+                        sceneStatus = SceneStatus.Options_3_ReturnMain;
+                        break;
+
+                    case SceneStatus.Options_3_ReturnMain:
+                        Debug.Log("return main");
+                        SceneManager.LoadScene("JH_02MainScene");
+                        break;
 
 
-            //    }
-            //    break;
+                }
+                break;
 
-            //case ScenePosition.Credit:
-            //    switch (sceneStatus)
-            //    {
-            //        case SceneStatus.Credit_0_SceneChange:
-            //            Debug.Log("Credit_0 Credit Mode");
-            //            sceneStatus = SceneStatus.Credit_1_CreditPlay;
-            //            break;
+            case ScenePosition.Credit:
+                switch (sceneStatus)
+                {
+                    case SceneStatus.Credit_0_SceneChange:
+                        Debug.Log("Credit_0 Credit Mode");
+                        sceneStatus = SceneStatus.Credit_1_CreditPlay;
+                        break;
 
-            //        case SceneStatus.Credit_1_CreditPlay:
-            //            Debug.Log("Credit_1 Credit playing" +
-            //                "\nz : stop x : timeout c : keep play");
-            //            sceneStatus = SceneStatus.Credit_2_StopCheck;
-            //            break;
+                    case SceneStatus.Credit_1_CreditPlay:
+                        Debug.Log("Credit_1 Credit playing" +
+                            "\nRTrig : stop RMenu : timeout RGrip : keep play");
+                        sceneStatus = SceneStatus.Credit_2_StopCheck;
+                        break;
 
-            //        case SceneStatus.Credit_2_StopCheck:
-            //            switch(value)
-            //            {
-            //                case "z":
-            //                    Debug.Log("Credit_2 stop playing");
-            //                    sceneStatus = SceneStatus.Credit_3_CreditEnd;
-            //                    break;
+                    case SceneStatus.Credit_2_StopCheck:
+                        switch (inputStatus)
+                        {
+                            case InputStatus.RTrigDown:
+                                Debug.Log("Credit_2 stop playing");
+                                sceneStatus = SceneStatus.Credit_3_CreditEnd;
+                                break;
 
-            //                case "x":
-            //                    Debug.Log("Credit_2 credit timeout");
-            //                    sceneStatus = SceneStatus.Credit_3_CreditEnd;
-            //                    break;
+                            case InputStatus.RMenuDown:
+                                Debug.Log("Credit_2 credit timeout");
+                                sceneStatus = SceneStatus.Credit_3_CreditEnd;
+                                break;
 
-            //                case "c":
-            //                    Debug.Log("Credit_2 keep playing");
-            //                    sceneStatus = SceneStatus.Credit_1_CreditPlay;
-            //                    break;
-            //            }
-            //            break;
+                            case InputStatus.RGripDown:
+                                Debug.Log("Credit_2 keep playing");
+                                sceneStatus = SceneStatus.Credit_1_CreditPlay;
+                                break;
+                        }
+                        break;
 
-            //        case SceneStatus.Credit_3_CreditEnd:
-            //            Debug.Log("credit playmode end");
-            //            sceneStatus = SceneStatus.Credit_4_ReturnMain;
-            //            break;
+                    case SceneStatus.Credit_3_CreditEnd:
+                        Debug.Log("credit playmode end");
+                        sceneStatus = SceneStatus.Credit_4_ReturnMain;
+                        break;
 
-            //        case SceneStatus.Credit_4_ReturnMain:
-            //            Debug.Log("return main");
-            //            SceneManager.LoadScene("JH_02MainScene");
-            //            break;
-            //    }
-            //    break;
+                    case SceneStatus.Credit_4_ReturnMain:
+                        Debug.Log("return main");
+                        SceneManager.LoadScene("JH_02MainScene");
+                        break;
+                }
+                break;
         }
     }
 }

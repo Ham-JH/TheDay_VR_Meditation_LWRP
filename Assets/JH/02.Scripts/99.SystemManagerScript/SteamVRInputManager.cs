@@ -35,23 +35,6 @@ public class SteamVRInputManager : MonoBehaviour
     public SteamVR_Action_Vector2 RTrackpadPos;
     public SteamVR_Action_Pose RPose;
 
-    [Header("왼쪽 컨트롤러 변수 상태")]
-    public bool LMenuStateDown;
-    public bool LGripStateDown;
-    public bool LTriggerStateDown;
-    public bool LTrackpadStateDown;
-    public float2 LTrackpadPosPosition;
-    public float4 LPosePosition;
-
-    [Header("오른쪽 컨트롤러 변수 상태")]
-    public bool RMenuStateDown;
-    public bool RGripStateDown;
-    public bool RTriggerStateDown;
-    public bool RTrackpadStateDown;
-    public float2 RTrackpadPosPosition;
-    public float4 RPosePosition;
-
-
     // Start is called before the first frame update
     void Start()
     {
