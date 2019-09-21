@@ -64,27 +64,35 @@ public class SteamVRInputManager : MonoBehaviour
         //빈도순으로 한 조건식으로 엮음
         if(RTrigger.stateDown)
         {
-            
+            GM.InputCatch(GameManager.InputStatus.RTrigDown);
         }
         else if(LTrigger.stateDown)
         {
-
+            GM.InputCatch(GameManager.InputStatus.LTrigDown);
         }
         else if(RMenu.stateDown)
         {
-
+            GM.InputCatch(GameManager.InputStatus.RMenuDown);
         }
         else if(LMenu.stateDown)
         {
-
+            GM.InputCatch(GameManager.InputStatus.LMenuDown);
         }
         else if(RTrackpad.stateDown)
         {
-            
+            GM.InputCatch(GameManager.InputStatus.RTracDown);
         }
         else if(LTrackpad.stateDown)
         {
-
+            GM.InputCatch(GameManager.InputStatus.LTracDown);
+        }
+        else if(RGrip.stateDown)
+        {
+            GM.InputCatch(GameManager.InputStatus.RGripDown);
+        }
+        else if(LGrip.stateDown)
+        {
+            GM.InputCatch(GameManager.InputStatus.LGripDown);
         }
 
         //TrackPadPos, 컨트롤러 위치 할당은 논외

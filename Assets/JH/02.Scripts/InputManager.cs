@@ -11,11 +11,11 @@ public class InputManager : MonoBehaviour
     /// </summary>
     void Update()
     {
-        string str = Input.inputString;
-        if(str != "")
-        {
-            str = str.Substring(0, 1);
-            GM.InputCatch(str);     //Gamemanager로 입력 문자 전달
-        }
+        //string str = Input.inputString;
+        //if(str != "")
+        //{
+        //    str = str.Substring(0, 1);
+        //    //GM.InputCatch(str);     //Gamemanager로 입력 문자 전달
+        //}
     }
 }
