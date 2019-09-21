@@ -68,6 +68,9 @@ public class GameManager : MonoBehaviour
         Credit_4_ReturnMain,
     };
 
+    /// <summary>
+    /// 입력값 열거변수
+    /// </summary>
     public enum InputStatus
     {
         RTrigDown,

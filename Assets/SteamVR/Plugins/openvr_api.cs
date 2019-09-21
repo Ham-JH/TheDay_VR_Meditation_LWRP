@@ -1923,20 +1923,20 @@ public class CVRSystem
 	}
 	public bool PollNextEvent(ref VREvent_t pEvent,uint uncbVREvent)
 	{
-#if !UNITY_METRO
-		if ((System.Environment.OSVersion.Platform == System.PlatformID.MacOSX) ||
-				(System.Environment.OSVersion.Platform == System.PlatformID.Unix))
-		{
-			PollNextEventUnion u;
-			VREvent_t_Packed event_packed = new VREvent_t_Packed();
-			u.pPollNextEventPacked = null;
-			u.pPollNextEvent = FnTable.PollNextEvent;
-			bool packed_result = u.pPollNextEventPacked(ref event_packed,(uint)System.Runtime.InteropServices.Marshal.SizeOf(typeof(VREvent_t_Packed)));
+//#if !UNITY_METRO
+//		if ((System.Environment.OSVersion.Platform == System.PlatformID.MacOSX) ||
+//				(System.Environment.OSVersion.Platform == System.PlatformID.Unix))
+//		{
+//			PollNextEventUnion u;
+//			VREvent_t_Packed event_packed = new VREvent_t_Packed();
+//			u.pPollNextEventPacked = null;
+//			u.pPollNextEvent = FnTable.PollNextEvent;
+//			bool packed_result = u.pPollNextEventPacked(ref event_packed,(uint)System.Runtime.InteropServices.Marshal.SizeOf(typeof(VREvent_t_Packed)));
 
-			event_packed.Unpack(ref pEvent);
-			return packed_result;
-		}
-#endif
+//			event_packed.Unpack(ref pEvent);
+//			return packed_result;
+//		}
+//#endif
 		bool result = FnTable.PollNextEvent(ref pEvent,uncbVREvent);
 		return result;
 	}

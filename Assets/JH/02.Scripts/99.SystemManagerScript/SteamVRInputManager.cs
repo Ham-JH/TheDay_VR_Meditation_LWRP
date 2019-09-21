@@ -80,7 +80,7 @@ public class SteamVRInputManager : MonoBehaviour
 
         //TrackPadPos, 컨트롤러 위치 할당은 논외
         
-        //Debug.Log(LTriggerStateDown);
+        //디버깅 업데이트문장
         //LText.text = "LTrigger  " + LTrigger.state
         //           + "\nLGrip   " + LGrip.state
         //           + "\nLTrackpad   " + LTrackpad.state
