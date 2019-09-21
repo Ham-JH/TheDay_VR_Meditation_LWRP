@@ -1,0 +1,16 @@
+{
+  "source": "Unity",
+  "applications": [
+    {
+      "app_key": "application.generated.unity.theday_vr_meditation_lwrp.exe",
+      "launch_type": "url",
+      "url": "steam://launch/",
+      "action_manifest_path": "D:\\Projects\\VR_Meditation\\TheDay_VR_Meditation_LWRP\\actions.json",
+      "strings": {
+        "en_us": {
+          "name": "TheDay_VR_Meditation_LWRP [Testing]"
+        }
+      }
+    }
+  ]
+}
