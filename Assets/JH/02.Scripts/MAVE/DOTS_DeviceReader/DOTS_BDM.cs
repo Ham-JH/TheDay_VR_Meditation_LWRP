@@ -26,6 +26,13 @@ namespace DOTS_BLE
         // Start is called before the first frame update
         void Start()
         {
+            //var picker = new DevicePicker();
+
+            //var deviceInfo = picker.PickSingleDevice();
+
+            //Debug.Log(deviceInfo.Id);
+            //Debug.Log(deviceInfo.Name);
+
             //장비검색 메서드. 추후 이벤트로 분리
             FindDeviceStream();
 
@@ -58,12 +65,20 @@ namespace DOTS_BLE
 
             for (int i = 0; i < deviceList.Length; i++)
             {
-                if (deviceList[i].Name == "Meddiction_0022")
+                Debug.Log(deviceList[i].Name);
+                if(deviceList[i].Name == "MAVE_0011")
                 {
                     MAVE_Device = deviceList[i];
                     deviceReader.CatchData(MAVE_Device.Name, 100);  //DeviceReader로 장비명 갱신
                     break;
                 }
+                else if (deviceList[i].Name == "Meddiction_0022")
+                {
+                    MAVE_Device = deviceList[i];
+                    deviceReader.CatchData(MAVE_Device.Name, 100);  //DeviceReader로 장비명 갱신
+                    break;
+                }
+
             }
 
             //장비 못찾음
