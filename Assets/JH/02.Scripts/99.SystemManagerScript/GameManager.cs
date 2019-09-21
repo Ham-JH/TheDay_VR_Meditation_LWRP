@@ -8,6 +8,9 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class GameManager : MonoBehaviour
 {
+    /// <summary>
+    /// 씬 위치 열거변수
+    /// </summary>
     public enum ScenePosition
     {
         Intro,
@@ -18,6 +21,9 @@ public class GameManager : MonoBehaviour
         Credit
     }
 
+    /// <summary>
+    /// 씬 상태 열거변수
+    /// </summary>
     public enum SceneStatus
     {
         Intro_0_DeviceCheck,
@@ -61,6 +67,16 @@ public class GameManager : MonoBehaviour
         Credit_3_CreditEnd,
         Credit_4_ReturnMain,
     };
+
+    public enum inputStatus
+    {
+        RTrigDown,
+        LTrigDown,
+        RMenuDown,
+        LMenuDown,
+        RTracDown,
+        LTracDown
+    }
 
     //씬 위치 확인 열거변수
     public ScenePosition scenePos;
