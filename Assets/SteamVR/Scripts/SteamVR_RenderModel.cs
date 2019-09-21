@@ -831,18 +831,18 @@ namespace Valve.VR
         /// <returns></returns>
         private RenderModel_t MarshalRenderModel(System.IntPtr pRenderModel)
         {
-            if ((System.Environment.OSVersion.Platform == System.PlatformID.MacOSX) ||
-                (System.Environment.OSVersion.Platform == System.PlatformID.Unix))
-            {
-                var packedModel = (RenderModel_t_Packed)Marshal.PtrToStructure(pRenderModel, typeof(RenderModel_t_Packed));
-                RenderModel_t model = new RenderModel_t();
-                packedModel.Unpack(ref model);
-                return model;
-            }
-            else
-            {
+            //if ((System.Environment.OSVersion.Platform == System.PlatformID.MacOSX) ||
+            //    (System.Environment.OSVersion.Platform == System.PlatformID.Unix))
+            //{
+            //    var packedModel = (RenderModel_t_Packed)Marshal.PtrToStructure(pRenderModel, typeof(RenderModel_t_Packed));
+            //    RenderModel_t model = new RenderModel_t();
+            //    packedModel.Unpack(ref model);
+            //    return model;
+            //}
+            //else
+            //{
                 return (RenderModel_t)Marshal.PtrToStructure(pRenderModel, typeof(RenderModel_t));
-            }
+            //}
         }
 
         /// <summary>
@@ -853,18 +853,18 @@ namespace Valve.VR
         /// <returns></returns>
         private RenderModel_TextureMap_t MarshalRenderModel_TextureMap(System.IntPtr pRenderModel)
         {
-            if ((System.Environment.OSVersion.Platform == System.PlatformID.MacOSX) ||
-                (System.Environment.OSVersion.Platform == System.PlatformID.Unix))
-            {
-                var packedModel = (RenderModel_TextureMap_t_Packed)Marshal.PtrToStructure(pRenderModel, typeof(RenderModel_TextureMap_t_Packed));
-                RenderModel_TextureMap_t model = new RenderModel_TextureMap_t();
-                packedModel.Unpack(ref model);
-                return model;
-            }
-            else
-            {
+            //if ((System.Environment.OSVersion.Platform == System.PlatformID.MacOSX) ||
+            //    (System.Environment.OSVersion.Platform == System.PlatformID.Unix))
+            //{
+            //    var packedModel = (RenderModel_TextureMap_t_Packed)Marshal.PtrToStructure(pRenderModel, typeof(RenderModel_TextureMap_t_Packed));
+            //    RenderModel_TextureMap_t model = new RenderModel_TextureMap_t();
+            //    packedModel.Unpack(ref model);
+            //    return model;
+            //}
+            //else
+            //{
                 return (RenderModel_TextureMap_t)Marshal.PtrToStructure(pRenderModel, typeof(RenderModel_TextureMap_t));
-            }
+            //}
         }
     }
 }
