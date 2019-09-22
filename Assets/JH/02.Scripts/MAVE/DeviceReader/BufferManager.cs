@@ -58,15 +58,14 @@ public class BufferManager : MonoBehaviour
     private Queue<double> ch2_queue;
     private Queue<double> ch3_queue;
 
-    public int slideCounter;        //슬라이드 개수
+    [HideInInspector] public int slideCounter;        //슬라이드 개수
     private Slide[] slide;          //슬라이드 배열
 
     //Peak Data 찾는 배열
     //private double
 
     private byte checkCounter;      //카운터가 변하는 것을 받는 변수. 0번 카운터를 받으면 SlidePosition의 값이 바뀐다.
-    [HideInInspector]
-    public int slidePosition;      //현재 쓰이는 슬라이드의 위치를 확인한다.
+    [HideInInspector] public int slidePosition;      //현재 쓰이는 슬라이드의 위치를 확인한다.
     private int slideSwitchCount;   //슬라이드를 바꾼 회수를 입력한다.
 
     #endregion Buffer Control

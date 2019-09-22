@@ -53,7 +53,7 @@ namespace DOTS_BLE
 
         public DOTS_DeviceReader deviceReader;       //데이터 출력
         public DOTS_FFT_Op fft;                      //FFT 처리하는 클래스
-        public Files fileWriter;                //파일 쓰는 클래스
+        //public Files fileWriter;                //파일 쓰는 클래스
 
         //임시 확인 텍스트
         //public Text text;
@@ -67,6 +67,7 @@ namespace DOTS_BLE
         public Queue<double> ch2_queue;
         public Queue<double> ch3_queue;
 
+        [HideInInspector]
         public int slideCounter;        //슬라이드 개수
         private Slide[] slide;          //슬라이드 배열
 

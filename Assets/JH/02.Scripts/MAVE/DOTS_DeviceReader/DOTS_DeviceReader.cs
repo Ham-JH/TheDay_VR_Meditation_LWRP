@@ -8,7 +8,7 @@ namespace DOTS_BLE
 {
     public class DOTS_DeviceReader : MonoBehaviour
     {
-        public TestCube cube;
+        public DOTS_Files files;
         //데이터를 가져올 클래스의 위치
         //public BluetoothDeviceManager bluetoothDeviceManager;
         //public BufferManager bufferManager;
@@ -28,24 +28,24 @@ namespace DOTS_BLE
         public Text EEG2percentData;
         public Text PPGData;
 
-        public Text timer;
-        public double times;
+        [HideInInspector] public Text timer;
+        [HideInInspector] public double times;
 
         //=================================================
         // DOTS_BDM 갱신 변수
-        public string deviceName;           //장비명
-        public bool streamReadStatus;       //스트림 상태
+        [HideInInspector] public string deviceName;           //장비명
+        [HideInInspector] public bool streamReadStatus;       //스트림 상태
 
         //DOTS_BufferManager 갱신 변수(public 변수로 직접 읽는다.)
-        public DOTS_BufferManager bufferManager;
+        [HideInInspector] public DOTS_BufferManager bufferManager;
 
 
         //DOTS_FFTProcess 갱신 변수
-        public double[] EEG1_PSum;          //EEG1_PSum     double 5
-        public double[] EEG2_PSum;          //EEG2_PSum     double 5
-        public double[] EEG1_PAverage;      //EEG1_PAverage double 5
-        public double[] EEG2_PAverage;      //EEG2_PAverage double 5
-        public double BPM;                  //BPM           double 1
+        [HideInInspector] public double[] EEG1_PSum;          //EEG1_PSum     double 5
+        [HideInInspector] public double[] EEG2_PSum;          //EEG2_PSum     double 5
+        [HideInInspector] public double[] EEG1_PAverage;      //EEG1_PAverage double 5
+        [HideInInspector] public double[] EEG2_PAverage;      //EEG2_PAverage double 5
+        [HideInInspector] public double BPM;                  //BPM           double 1
 
         // Start is called before the first frame update
         void Start()
@@ -250,6 +250,7 @@ namespace DOTS_BLE
             {
                 case 331:   //BPM 갱신
                     BPM = value;
+                    files.textAppend(value, "BPM.txt");
                     break;
             }
         }
@@ -271,6 +272,7 @@ namespace DOTS_BLE
                     EEG1_PSum[2] = values[2];
                     EEG1_PSum[3] = values[3];
                     EEG1_PSum[4] = values[4];
+                    files.textAppend(values, "EEG1PSum.txt");
                     break;
 
                 case 312:   //EEG1_PAverage 갱신
@@ -279,6 +281,7 @@ namespace DOTS_BLE
                     EEG1_PAverage[2] = values[2];
                     EEG1_PAverage[3] = values[3];
                     EEG1_PAverage[4] = values[4];
+                    files.textAppend(values, "EEG1PAverage.txt");
                     break;
 
                 case 321:   //EEG2_PSum 갱신
@@ -287,6 +290,7 @@ namespace DOTS_BLE
                     EEG2_PSum[2] = values[2];
                     EEG2_PSum[3] = values[3];
                     EEG2_PSum[4] = values[4];
+                    files.textAppend(values, "EEG2PSum.txt");
                     break;
 
                 case 322:   //EEG2_PAverage 갱신
@@ -295,6 +299,7 @@ namespace DOTS_BLE
                     EEG2_PAverage[2] = values[2];
                     EEG2_PAverage[3] = values[3];
                     EEG2_PAverage[4] = values[4];
+                    files.textAppend(values, "EEG2PAverage.txt");
                     break;
             }
         }

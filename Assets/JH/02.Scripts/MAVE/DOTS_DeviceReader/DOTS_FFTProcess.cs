@@ -11,7 +11,7 @@ namespace DOTS_BLE
 
         public DOTS_DeviceReader deviceReader;       //데이터 출력
         public DOTS_BufferManager bufferManager;
-        public Files file;
+        //public Files file;
 
         #endregion public implementation
 
@@ -169,7 +169,7 @@ namespace DOTS_BLE
                     EEG1_PSum[3] = 0;
                     EEG1_PSum[4] = 0;
 
-
+                    //주파수 대역별 EEG power 배치
                     for (int i = minEEG_HzCheck; i < maxEEG_HzCheck; i++)
                     {
                         EEG1_result[i - minEEG_HzCheck] = (fft[i * 2] * fft[i * 2] + fft[i * 2 + 1] * fft[i * 2 + 1])
