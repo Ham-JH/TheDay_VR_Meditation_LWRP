@@ -8,18 +8,20 @@ namespace DOTS_BLE
 {
     public class DOTS_DeviceReader : MonoBehaviour
     {
+        #region public Implementation
         public DOTS_Files files;
-        //데이터를 가져올 클래스의 위치
+        //데이터를 가져올 클래스의 위치(콜백 형식으로 데이터 발생시에 여기로 메서드 호출한다.)
         //public BluetoothDeviceManager bluetoothDeviceManager;
         //public BufferManager bufferManager;
         //public FFTProcess fftProcess;
 
+        //테스트에 쓰던 변수들(나중에 쓸지도 모름)
         //텍스트 갖고있기
         //public Text rawData;
-        public Text deviceData;
         //public Text slideData;
         //public Text bufferData;
         //public Text indexData;
+        public Text deviceData;
 
         //FFTProcess Data
         public Text EEG1Data;
@@ -30,6 +32,10 @@ namespace DOTS_BLE
 
         [HideInInspector] public Text timer;
         [HideInInspector] public double times;
+
+        #endregion public Implementation
+
+        #region public reused object Variables
 
         //=================================================
         // DOTS_BDM 갱신 변수
@@ -46,6 +52,10 @@ namespace DOTS_BLE
         [HideInInspector] public double[] EEG1_PAverage;      //EEG1_PAverage double 5
         [HideInInspector] public double[] EEG2_PAverage;      //EEG2_PAverage double 5
         [HideInInspector] public double BPM;                  //BPM           double 1
+
+        #endregion public reused object Variables
+
+        #region Unity Methods
 
         // Start is called before the first frame update
         void Start()
@@ -71,6 +81,14 @@ namespace DOTS_BLE
             SetText(331);
         }
 
+        #endregion Unity Methods
+
+        #region SetText
+
+        /// <summary>
+        /// 콜백으로 갱신된 변수를 문자열을 목표로 하는 텍스트 오브젝트에 가공해 할당
+        /// </summary>
+        /// <param name="channel"></param>
         public void SetText(int channel)
         {
             string txt;
@@ -198,11 +216,19 @@ namespace DOTS_BLE
             name.text = data;
         }
 
+        /// <summary>
+        /// 읽어온 문자열 텍스트 출력
+        /// </summary>
+        /// <param name="name"></param>
         [BurstCompile]
         private void textOut(Text name)
         {
             name.text = ++times + "";
         }
+
+        #endregion SetText
+
+        #region CatchData
 
         /// <summary>
         /// 문자열형 데이터 갖고오기(데이터 발생 코드에서 호출)
@@ -304,6 +330,10 @@ namespace DOTS_BLE
             }
         }
 
+        #endregion CatchData
+
+        #region CatchRawData
+
         /// <summary>
         /// bufferManager 코드에서 실시간 RawData를 가지고 오는 영역.
         /// 성능 저하를 고려해 public 변수 상태로 데이터를 받아온다.
@@ -318,6 +348,8 @@ namespace DOTS_BLE
         {
             
         }
+
+        #endregion CatchRawData
     }
 
 }

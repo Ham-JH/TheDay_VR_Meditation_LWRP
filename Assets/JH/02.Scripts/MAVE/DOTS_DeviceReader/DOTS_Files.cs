@@ -9,21 +9,18 @@ namespace DOTS_BLE
 {
     public class DOTS_Files : MonoBehaviour
     {
+        #region public Implementation
+
         public DOTS_BDM bluetoothDeviceManager;
 
-        StreamWriter fr;
+        #endregion public Implementation
 
-        // Start is called before the first frame update
-        void Start()
-        {
+        #region private Variables
 
-        }
+        //텍스트 출력 StreamWriter
+        private StreamWriter fr;
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
+        #endregion private Variables
 
         #region textPrint
 
@@ -176,6 +173,8 @@ namespace DOTS_BLE
 
         #endregion textPrint
 
+        #region textAppend
+
         [BurstCompile]
         public void textAppend(double outputText, string _fileName)
         {
@@ -229,6 +228,8 @@ namespace DOTS_BLE
                 fr.Close();
             }
         }
+
+        #endregion textAppend
     }
 
 }

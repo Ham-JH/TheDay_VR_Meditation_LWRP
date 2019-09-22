@@ -17,11 +17,22 @@ namespace DOTS_BLE
     [BurstCompile]
     public class DOTS_BDM : MonoBehaviour
     {
+        #region Public Implementation
+
         public DOTS_DeviceReader deviceReader;
         public DOTS_BufferManager bufferManager;
 
+        #endregion Public Implementation
+
+        #region private Variables
+
         private DeviceInformation MAVE_Device;
         private Stream _Stream;
+
+        #endregion private Variables
+
+
+        #region Unity Methods
 
         // Start is called before the first frame update
         void Start()
@@ -48,6 +59,7 @@ namespace DOTS_BLE
             
         }
 
+        [BurstCompile]
         // Update is called once per frame
         void Update()
         {
@@ -57,6 +69,15 @@ namespace DOTS_BLE
             }
         }
 
+        #endregion Unity Methods
+
+        #region Methods
+
+        #region Public : FindDeviceStream
+
+        /// <summary>
+        /// Pub 1 : 장비검색, 스트림 따기
+        /// </summary>
         [BurstCompile]
         public void FindDeviceStream()
         {
@@ -65,7 +86,7 @@ namespace DOTS_BLE
 
             for (int i = 0; i < deviceList.Length; i++)
             {
-                Debug.Log(deviceList[i].Name);
+                //Debug.Log(deviceList[i].Name);
                 if(deviceList[i].Name == "MAVE_0011")
                 {
                     MAVE_Device = deviceList[i];
@@ -95,7 +116,7 @@ namespace DOTS_BLE
         }
 
         /// <summary>
-        /// finds all devices that support specified service id
+        /// Pri 1-1 : 서비스에 관계된 장비 Id 다 갖고옴
         /// </summary>
         [BurstCompile]
         private DeviceInformation[] FindAll(RfcommServiceId serviceId)
@@ -104,7 +125,7 @@ namespace DOTS_BLE
         }
 
         /// <summary>
-        /// Bluetooth device picker를 열고 시리얼 포트의 서비스에서 스트림을 여는 것을 시도합니다.
+        /// Pri 1-2 : Bluetooth device picker를 열고 시리얼 포트의 서비스에서 스트림을 여는 것을 시도
         /// </summary>
         private static Stream OpenBluetoothStream(DeviceInformation deviceInformation, RfcommServiceId serviceId)
         {
@@ -126,8 +147,12 @@ namespace DOTS_BLE
             return null;
         }
 
+        #endregion FindDeviceStream
+
+        #region Update : DeviceRead
+
         /// <summary>
-        /// 장비의 스트림에서 10바이트의 데이터를 읽어옵니다.
+        /// Pri Update : 장비의 스트림에서 10바이트의 데이터를 읽어옵니다.
         /// </summary>
         [BurstCompile]
         private void DeviceRead(Stream stream)
@@ -157,6 +182,14 @@ namespace DOTS_BLE
 
         }
 
+        #endregion DeviceRead
+
+        #region Public : shootData
+
+        /// <summary>
+        /// DevReader : 장비명, 스트림 보냄
+        /// </summary>
+        /// <param name="assignPath"></param>
         public void shootData(int assignPath)
         {
             switch(assignPath)
@@ -170,6 +203,10 @@ namespace DOTS_BLE
                     break;
             }
         }
+
+        #endregion shootData
+
+        #endregion Methods
     }
 
 }

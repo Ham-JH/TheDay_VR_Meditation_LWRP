@@ -8,6 +8,9 @@ using Unity.Collections;
 using Unity.Burst;
 using Unity.Jobs;
 
+/// <summary>
+/// RawData 출력여부 고려
+/// </summary>
 namespace DOTS_BLE
 {
     [Serializable]
@@ -55,9 +58,6 @@ namespace DOTS_BLE
         public DOTS_FFT_Op fft;                      //FFT 처리하는 클래스
         //public Files fileWriter;                //파일 쓰는 클래스
 
-        //임시 확인 텍스트
-        //public Text text;
-
         #endregion Public implementation
 
         #region Buffer Control
@@ -71,9 +71,6 @@ namespace DOTS_BLE
         public int slideCounter;        //슬라이드 개수
         private Slide[] slide;          //슬라이드 배열
 
-        //Peak Data 찾는 배열
-        //private double
-
         private byte checkCounter;      //카운터가 변하는 것을 받는 변수. 0번 카운터를 받으면 SlidePosition의 값이 바뀐다.
         [HideInInspector]
         public int slidePosition;      //현재 쓰이는 슬라이드의 위치를 확인한다.
@@ -81,7 +78,7 @@ namespace DOTS_BLE
 
         #endregion Buffer Control
 
-        #region Unity Methods
+        #region Unity Methods : Initializing instance
 
         //슬라이드 초기값 할당영역
         private void Awake()
@@ -131,7 +128,6 @@ namespace DOTS_BLE
         [BurstCompile]
         public void BufferRead(byte[] _buffer)
         {
-            //Debug.Log("15");
 
             NativeArray<int> resultBuffer = new NativeArray<int>(5, Allocator.Persistent);
             NativeArray<byte> BufferArray = new NativeArray<byte>(10, Allocator.Persistent);
@@ -195,6 +191,7 @@ namespace DOTS_BLE
                     break;
             }
 
+            //버퍼 할당 Job 생성
             ChannelOperater channelOperator = new ChannelOperater
             {
                 //결과 버퍼 할당
@@ -204,7 +201,7 @@ namespace DOTS_BLE
             };
 
 
-            JobHandle jobHandle = channelOperator.Schedule();
+            JobHandle jobHandle = channelOperator.Schedule(); //Job List에 적재
             jobHandle.Complete();
 
             BufferArray.Dispose();
@@ -216,12 +213,6 @@ namespace DOTS_BLE
             slide[slidePosition].counter[_buffer[1]].ch4 = _buffer[8];
 
             resultBuffer.Dispose();
-
-            //text.text = "[0] : " + slide[slidePosition].counter[_buffer[1]].counter
-            //         + "\n[1] : " + slide[slidePosition].counter[_buffer[1]].ch1
-            //         + "\n[2] : " + slide[slidePosition].counter[_buffer[1]].ch2
-            //         + "\n[3] : " + slide[slidePosition].counter[_buffer[1]].ch3
-            //         + "\n[4] : " + slide[slidePosition].counter[_buffer[1]].ch4;
 
             //최소수집 Slide 개수 * Counter보다 많은 데이터를 얻기 시작한 경우
             if (ch1_queue.Count >= 256 * slideCounter)
@@ -248,6 +239,11 @@ namespace DOTS_BLE
         #endregion BufferRead
     }
 
+    #region Struct : ChannelOperator Job
+
+    /// <summary>
+    /// 버퍼를 원하는 데이터로 변환하는 Single Job
+    /// </summary>
     [BurstCompile]
     public struct ChannelOperater : IJob
     {
@@ -270,5 +266,6 @@ namespace DOTS_BLE
         }
     }
 
+    #endregion ChannelOperator
 
 }

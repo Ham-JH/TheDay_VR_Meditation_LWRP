@@ -11,7 +11,6 @@ namespace DOTS_BLE
 
         public DOTS_DeviceReader deviceReader;       //데이터 출력
         public DOTS_BufferManager bufferManager;
-        //public Files file;
 
         #endregion public implementation
 
@@ -123,6 +122,11 @@ namespace DOTS_BLE
         #endregion Unity Methods
 
         #region public Methods (ProcessFFT)
+        /// <summary>
+        /// FFT 결과값을 원하는 데로 변환한다.
+        /// </summary>
+        /// <param name="fft"></param>
+        /// <param name="channel"></param>
         [BurstCompile]
         public void ProcessFFT(double[] fft, int channel)
         {
@@ -149,7 +153,11 @@ namespace DOTS_BLE
 
         #region private Methods
 
-        //fft결과 파워 스펙트럼
+        /// <summary>
+        /// FFT 결과를 파워 스펙트럼 방식으로 변환해 계산한다.
+        /// </summary>
+        /// <param name="fft"></param>
+        /// <param name="channel"></param>
         [BurstCompile]
         private void PowerSpectrum(double[] fft, int channel)
         {
@@ -353,7 +361,7 @@ namespace DOTS_BLE
 
         private void ResetValues()
         {
-            //변수값 초기화 하는 메서드
+            //변수값 초기화 하는 메서드 (왜 있지?)
         }
 
         #endregion private Methods
