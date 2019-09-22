@@ -95,6 +95,7 @@ namespace DOTS_BLE
         [BurstCompile]
         public void FFT(double[] data, bool real, int channel)
         {
+            Debug.Log("Hello " + channel);
             if (real) data = ToComplex(data);     // 입력값이 실수일 경우 복소수로 바꿔준다.
             int n = data.Length;                    // 배열의 길이를 받아온다.
 
