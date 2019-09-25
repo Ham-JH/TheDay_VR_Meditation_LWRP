@@ -8,6 +8,7 @@ using InTheHand.Devices.Bluetooth.Rfcomm;
 using InTheHand.Devices.Enumeration;
 using Unity.Burst;
 using Unity.Entities;
+using System.Threading;
 
 namespace DOTS_BLE
 {
