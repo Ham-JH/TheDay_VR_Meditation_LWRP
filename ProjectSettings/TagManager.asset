@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - BUTTON
+  - FLOOR
+  - GameManager
+  - INTRO_1
   layers:
   - Default
   - TransparentFX

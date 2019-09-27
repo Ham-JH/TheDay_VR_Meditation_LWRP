@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public enum SceneStatus
     {
+        Intro___SceneStart,
         Intro_0_DeviceCheck,
         Intro_1_UserCheck,
         Intro_2_Manual,
@@ -95,6 +96,9 @@ public class GameManager : MonoBehaviour
     //타이머
     private float timer;
 
+    // 씬 관리자 받는 변수들
+    public IntroSceneManager introSceneManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -102,17 +106,19 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("프로그램 시작");
 
-        scenePos = ScenePosition.Intro;
-        sceneStatus = SceneStatus.Intro_0_DeviceCheck;
+        // 장비 상태코드 갱신은 IntroSceneManager에서 초기값을 잡음
+        //scenePos = ScenePosition.Intro;
+        //sceneStatus = SceneStatus.Intro___SceneStart;
+
         //장비 확인 전에 프로그램 시작단계 하나 추가해야함
-        Debug.Log("Intro_0 장비확인");
+        //Debug.Log("Intro_0 장비확인");
 
         firstTimeUser = false;
         skipPressed = false;
         timer = 0;
 
-        
-        
+        // Start : 인트로 씬 장비 확인 Panel 출력
+        InputCatch(SceneStatus.Intro___SceneStart);
     }
 
     // Update is called once per frame
@@ -121,6 +127,7 @@ public class GameManager : MonoBehaviour
         
     }
 
+    //잠시 컨트롤러 순수입력 끔
     /// <summary>
     /// InputManager 입력값 전달받음
     /// </summary>
@@ -128,9 +135,9 @@ public class GameManager : MonoBehaviour
     public void InputCatch(InputStatus inputStatus)
     {
         //Debug.Log(value);
-        CheckAndSetStatus(inputStatus);
+        //CheckAndSetStatus(inputStatus);
     }
-    
+
     /// <summary>
     /// 현재 상태값 확인하고 상태 변환하기
     /// </summary>
@@ -142,6 +149,15 @@ public class GameManager : MonoBehaviour
             case ScenePosition.Intro:
                 switch(sceneStatus)
                 {
+                    case SceneStatus.Intro___SceneStart:
+                        introSceneManager = GameObject.FindGameObjectWithTag("INTRO_1").GetComponent<IntroSceneManager>();
+                        
+                        //SceneStart 상태에 관련된 메서드 수행
+                        introSceneManager.statusChange(sceneStatus);
+
+                        Debug.Log("Intro__ 장비 확인");
+                        break;
+
                     case SceneStatus.Intro_0_DeviceCheck:
                         sceneStatus = SceneStatus.Intro_1_UserCheck;
                         Debug.Log("Intro_1 처음 사용자 확인" +
@@ -475,6 +491,213 @@ public class GameManager : MonoBehaviour
                     case SceneStatus.Credit_4_ReturnMain:
                         Debug.Log("return main");
                         SceneManager.LoadScene("JH_02MainScene");
+                        break;
+                }
+                break;
+        }
+    }
+
+    public void InputCatch(SceneStatus sceneStatus)
+    {
+        CheckAndSetStatus(sceneStatus);
+    }
+
+    private void CheckAndSetStatus(SceneStatus sceneStatus)
+    {
+        //받은 입력값으로 조건처리함
+        switch (scenePos)
+        {
+            case ScenePosition.Intro:
+                switch (sceneStatus)
+                {
+                    case SceneStatus.Intro___SceneStart:
+                        Debug.Log("Intro__ 장비 확인");
+
+                        // introSceneManager 로드
+                        introSceneManager = GameObject.FindGameObjectWithTag("INTRO_1").GetComponent<IntroSceneManager>();
+
+                        // SceneStart 상태에 관련된 메서드 수행
+                        introSceneManager.statusChange(sceneStatus);
+
+                        break;
+
+                    case SceneStatus.Intro_0_DeviceCheck:
+                        Debug.Log("Intro_0 장비 확인 완료");
+
+                        //씬 상태 변경
+                        sceneStatus = SceneStatus.Intro_0_DeviceCheck;      
+
+                        //장비 확인이 끝난 후 실행할 코드
+                        introSceneManager.statusChange(sceneStatus);
+                        
+                        //장비가 확인된 경우와 확인이 되지 않은 경우를 파악할 코드를 어디에 넣을 것인가에 대한 문제
+                        
+                        break;
+
+                    case SceneStatus.Intro_1_UserCheck:
+                        
+                        break;
+
+                    case SceneStatus.Intro_2_Manual:
+                        
+                        break;
+
+                    case SceneStatus.Intro_3_Narration:
+                        
+                        break;
+
+                    case SceneStatus.Intro_4_FTUser:
+                        
+                        break;
+
+                    case SceneStatus.Intro_5_SkipBtn:
+                        
+                        break;
+
+                    case SceneStatus.Intro_6_IntroTimeOut:
+                        
+                        break;
+
+                    case SceneStatus.Intro_7_IntroEnd:
+                        
+                        SceneManager.LoadScene("JH_02MainScene");
+                        break;
+                }
+                break;
+
+            case ScenePosition.Main:
+                switch (sceneStatus)
+                {
+                    case SceneStatus.Main_0_SceneChange:
+                        
+                        break;
+
+                    case SceneStatus.Main_1_MainMenuLayout:
+                        
+                        break;
+
+                    case SceneStatus.Main_2_Contents:
+                        
+                        break;
+
+                    case SceneStatus.Main_3_Manual:
+                        
+                        break;
+
+                    case SceneStatus.Main_4_Options:
+                        
+                        break;
+
+                    case SceneStatus.Main_5_Credit:
+                        
+                        break;
+
+                    case SceneStatus.Main_6_ProgramExit:
+                        
+                        break;
+                }
+                break;
+
+            case ScenePosition.Contents:
+                switch (sceneStatus)
+                {
+                    case SceneStatus.Contents_0_SceneChange:
+                        
+                        break;
+
+                }
+                break;
+
+            case ScenePosition.Manual:
+                switch (sceneStatus)
+                {
+                    case SceneStatus.Manual_0_SceneChange:
+                        
+                        break;
+
+                    case SceneStatus.Manual_1_ManualPlay:
+                        
+                        break;
+
+                    case SceneStatus.Manual_2_StopCheck:
+                        
+                        break;
+
+                    case SceneStatus.Manual_3_CreditEnd:
+                        
+                        break;
+
+                    case SceneStatus.Manual_4_ReturnMain:
+                        
+                        break;
+
+                }
+                break;
+
+            case ScenePosition.Options:
+                switch (sceneStatus)
+                {
+                    case SceneStatus.Options_0_SceneChange:
+                        
+                        break;
+
+                    case SceneStatus.Options_1_OptionsMenu:
+                        
+                        break;
+
+                    case SceneStatus.Options_s_Options01:
+                        
+                        break;
+
+                    case SceneStatus.Options_s_Options02:
+                        
+                        break;
+
+                    case SceneStatus.Options_s_Options03:
+                        
+                        break;
+
+                    case SceneStatus.Options_s_Options04:
+                        
+                        break;
+
+                    case SceneStatus.Options_s_Options05:
+                        
+                        break;
+
+                    case SceneStatus.Options_2_SelectOptionsQuit:
+                        
+                        break;
+
+                    case SceneStatus.Options_3_ReturnMain:
+                        
+                        break;
+
+
+                }
+                break;
+
+            case ScenePosition.Credit:
+                switch (sceneStatus)
+                {
+                    case SceneStatus.Credit_0_SceneChange:
+                        
+                        break;
+
+                    case SceneStatus.Credit_1_CreditPlay:
+                        
+                        break;
+
+                    case SceneStatus.Credit_2_StopCheck:
+                        
+                        break;
+
+                    case SceneStatus.Credit_3_CreditEnd:
+                        
+                        break;
+
+                    case SceneStatus.Credit_4_ReturnMain:
+                        
                         break;
                 }
                 break;
